@@ -1,6 +1,7 @@
 # D4
 
 TODO:
+
 Making it right
 1. Verifiying hash of block is correct hash
 2. Verify block number, previous hash, and time are all valid
