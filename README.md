@@ -9,3 +9,5 @@ Making it right
 Making it fast
 1. Putting all possible hashes in a file for quick access
 2. Checking balances of addresses
+
+Unit tests
