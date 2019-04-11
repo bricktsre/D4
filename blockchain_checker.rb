@@ -14,6 +14,10 @@ class BlockchainChecker
     @addr_table = Hash.new(0)
   end
 
+  def initialize
+    error_cases(nil, 0, nil, nil)
+  end
+
   def main
     line_num = 0
     @file.each do |line|
@@ -28,6 +32,7 @@ class BlockchainChecker
       @previous_time = time
       line_num += 1
     end
+    @file.close
     print_addresses
   end
 
@@ -53,7 +58,7 @@ class BlockchainChecker
 
   def check_addresses(line)
     @addr_table.each do |key, value|
-      error_cases(line, 5, value, key) if value < 0
+      error_cases(line, 5, value, key) if value.negative?
     end
   end
 
@@ -82,14 +87,15 @@ class BlockchainChecker
 
   def print_addresses
     @addr_table.sort.map do |key, value|
-      puts "#{key}: #{value} billcoins" if value > 0
+      puts "#{key}: #{value} billcoins" if value.negative?
     end
   end
 
   def error_cases(line, error_num, value, expected)
     case error_num
     when 0
-      puts 'Usage: ruby verifier.rb <name_of_file>/nname_of_file = name of file to verify'
+      puts "Usage: ruby verifier.rb <name_of_file>\nname_of_file = name of file to verify"
+      exit 1
     when 1
       puts "Line #{line}: Invalid block number #{value}, should be #{expected}"
     when 2
@@ -102,6 +108,7 @@ class BlockchainChecker
       puts "Line #{line}: Address #{expected} has invalid balance of #{value}"
     end
     puts 'BLOCKCHAIN INVALID'
+    @file.close unless @file.nil? 
     exit 1
   end
 end
