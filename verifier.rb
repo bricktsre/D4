@@ -14,7 +14,5 @@ Flamegraph.generate('verify.html') do
   if check_arguments(ARGV)
     checker = BlockchainChecker.new(ARGV[0])
     checker.main
-  else
-    BlockchainChecker.new 
   end
 end

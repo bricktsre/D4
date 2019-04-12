@@ -14,10 +14,6 @@ class BlockchainChecker
     @addr_table = Hash.new(0)
   end
 
-  def initialize
-    error_cases(nil, 0, nil, nil)
-  end
-
   def main
     line_num = 0
     @file.each do |line|
@@ -26,7 +22,8 @@ class BlockchainChecker
       block_arr = (line[0...line.rindex('|')]).unpack('U*')
       new_hash = calculate_hash(block_arr)
       do_transactions(trans)
-      check_block(blk_num, old_hash, trans, time, new_hash, block_hash.chomp, line_num)
+      return unless check_block(blk_num, old_hash, trans, time, new_hash, block_hash.chomp, line_num)
+
       @previous_block_num = blk_num
       @previous_hash = new_hash
       @previous_time = time
@@ -37,15 +34,23 @@ class BlockchainChecker
   end
 
   def check_block(blk_num, old_hash, _trans, time, new_hash, block_hash, line)
-    error_cases(line, 1, blk_num, @previous_block_num.to_i + 1) unless blk_num.to_i == (@previous_block_num.to_i + 1)
-
-    error_cases(line, 2, old_hash, @previous_hash) if old_hash != @previous_hash
-
-    error_cases(line, 3, block_hash, new_hash) if new_hash != block_hash
-
-    error_cases(line, 4, time, @previous_time) unless check_time(time)
-
-    check_addresses(line)
+    unless blk_num.to_i == (@previous_block_num.to_i + 1)
+      error_cases(line, 1, blk_num, @previous_block_num.to_i + 1)
+      return false
+    end
+    if old_hash != @previous_hash
+      error_cases(line, 2, old_hash, @previous_hash)
+      return false
+    end
+    if new_hash != block_hash
+      error_cases(line, 3, block_hash, new_hash)
+      return false
+    end
+    unless check_time(time)
+      error_cases(line, 4, time, @previous_time)
+      return false
+    end
+    return check_addresses(line)
   end
 
   def check_time(time)
@@ -58,8 +63,12 @@ class BlockchainChecker
 
   def check_addresses(line)
     @addr_table.each do |key, value|
-      error_cases(line, 5, value, key) if value.negative?
+      if value.negative?
+        error_cases(line, 5, value, key)
+        return false
+      end
     end
+    true
   end
 
   def do_transactions(trans)
@@ -87,7 +96,7 @@ class BlockchainChecker
 
   def print_addresses
     @addr_table.sort.map do |key, value|
-      puts "#{key}: #{value} billcoins" if value.negative?
+      puts "#{key}: #{value} billcoins" unless value.negative?
     end
   end
 
@@ -95,7 +104,6 @@ class BlockchainChecker
     case error_num
     when 0
       puts "Usage: ruby verifier.rb <name_of_file>\nname_of_file = name of file to verify"
-      exit 1
     when 1
       puts "Line #{line}: Invalid block number #{value}, should be #{expected}"
     when 2
@@ -108,7 +116,6 @@ class BlockchainChecker
       puts "Line #{line}: Address #{expected} has invalid balance of #{value}"
     end
     puts 'BLOCKCHAIN INVALID'
-    @file.close unless @file.nil? 
-    exit 1
+    @file&.close
   end
 end

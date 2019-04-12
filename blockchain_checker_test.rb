@@ -37,14 +37,48 @@ class BlockchainCheckerTest < Minitest::Test
   end
 
   # Tests if all returned strings only contain hex characters
+  # Uses property based testing to test a lot of strings
   def test_only_hex_characters
     property_of do
       arr = array(10) { range(lo = 0, hi = 256) }
     end.check do |arr|
       value = @checker.calculate_hash(arr)
       value.split(//).each do |char|
-        assert_includes(%w[0 1 2 3 4 5 6 7 8 9 a b c d e f], char)
+        assert_includes(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9','a', 'b', 'c', 'd', 'e', 'f'], char)
       end
     end
+  end
+
+  # Equivalence classes for error_cases(line, err_num, value, expected)
+  # err_num = 0 -> was called incorrectly or with a bad file
+  # err_num = 1 -> bad block number
+  # err_num = 2 -> bad previous hash
+  # err_num = 3 -> bad hash of current block
+  # err_num = 4 -> bad timestamp
+  # err_num = 5 -> bad transaction(s)
+  #
+  # Test for output of error case of bad block number
+  def test_err_num_one
+	  assert_output("Line 0: Invalid block number 1, should be 0\nBLOCKCHAIN INVALID\n") { @checker.error_cases(0, 1, 1, 0)}
+  end
+ 
+  # Test for output of error case of bad previous hash
+  def test_err_num_two
+	  assert_output("Line 0: Previous hash was 333f, should be 288d\nBLOCKCHAIN INVALID\n") { @checker.error_cases(0, 2, '333f', '288d')}
+  end
+  
+  # Test for output of error case of bad hash of current block
+  def test_err_num_three
+	  assert_output("Line 0: Current hash is 333f, should be 288d\nBLOCKCHAIN INVALID\n") { @checker.error_cases(0, 3, '333f', '288d')}
+  end
+  
+  # Test for output of error case of bad time stamp
+  def test_err_num_four
+	  assert_output("Line 0: New timestamp 12345.123 <= previous 12345.126\nBLOCKCHAIN INVALID\n") { @checker.error_cases(0, 4, '12345.123', '12345.126')}
+  end
+
+  # Test for output of error case of bad transaction(s)
+  def test_err_num_five
+	  assert_output("Line 0: Address 123456 has invalid balance of -1\nBLOCKCHAIN INVALID\n") { @checker.error_cases(0, 5, -1, 123456)}
   end
 end
