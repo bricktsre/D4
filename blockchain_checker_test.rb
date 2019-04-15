@@ -14,12 +14,12 @@ class BlockchainCheckerTest < Minitest::Test
   # ((x**3000) + (x**x) - (3**x)) * (7**x)
   # uses property based testing to test the hash function
   def test_hash
-    property_of do
+    property_of{
       value = range(lo = 0, hi = 65_536)
-    end.check do |value|
+    }.check{ |value|
       hashed_value = @checker.hash(value)
       assert (hashed_value = ((value**3000) + (value**value) - (3**value)) * (7**value))
-    end
+    }
   end
 
   # Tests for calculate_hash(arr)
@@ -39,14 +39,14 @@ class BlockchainCheckerTest < Minitest::Test
   # Tests if all returned strings only contain hex characters
   # Uses property based testing to test a lot of strings
   def test_only_hex_characters
-    property_of do
+    property_of{
       arr = array(10) { range(lo = 0, hi = 256) }
-    end.check do |arr|
+    }.check{ |arr|
       value = @checker.calculate_hash(arr)
       value.split(//).each do |char|
         assert_includes(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9','a', 'b', 'c', 'd', 'e', 'f'], char)
       end
-    end
+    }
   end
 
   # Equivalence classes for error_cases(line, err_num, value, expected)
@@ -56,6 +56,7 @@ class BlockchainCheckerTest < Minitest::Test
   # err_num = 3 -> bad hash of current block
   # err_num = 4 -> bad timestamp
   # err_num = 5 -> bad transaction(s)
+  # err_num = 6 -> address is not 6 digits long
   #
   # Test for output of error case of bad block number
   def test_err_num_one
@@ -80,5 +81,64 @@ class BlockchainCheckerTest < Minitest::Test
   # Test for output of error case of bad transaction(s)
   def test_err_num_five
 	  assert_output("Line 0: Address 123456 has invalid balance of -1\nBLOCKCHAIN INVALID\n") { @checker.error_cases(0, 5, -1, 123456)}
+  end
+
+  # Test for output of error case of address of the wrong length
+  def test_err_num_six
+	  assert_output("Line 0: Address 12345 is not six digits\nBLOCKCHAIN INVALID\n") { @checker.error_cases(0, 6, '12345', '123456')}
+  end
+  
+  # Tests for do_transactions(x)
+  # evaluates all the transactions in a single block 
+  # changes balances of each account invlovled in a transaction
+  #
+  # Test if billcoins added from the system are not subtracted from any account
+  def test_sending_from_system
+	  property_of {
+		  address = range(lo = 0, hi = 999999)
+	  }.check { |address|
+		address = address.to_s
+		while address.length < 6
+		  address = '0' + address
+		end
+          	transaction = "SYSTEM>" + address + "(1)"
+		@checker.do_transactions(transaction, 0)
+	        @checker.addr_table.each do |key, value|
+			refute value.negative?
+		end
+	  }
+  end	  
+
+  # Test if billcoins are properly added and subtracted
+  # from addresses involved in transactions
+  def test_sending_and_recieving
+	  @checker.do_transactions('000000>111111(10):222222>333333(5)', 0)
+	  assert @checker.addr_table['000000'] == -10
+	  assert @checker.addr_table['111111'] == 10
+	  assert @checker.addr_table['222222'] == -5
+	  assert @checker.addr_table['333333'] == 5
+	  assert @checker.addr_table.length == 4
+  end
+
+  # Test if returns false on incorrect address length
+  def test_bad_address_length
+	  refute @checker.do_transactions('00000>111111(10)', 0)
+  end
+
+  # Tests for check_addresses(x)
+  # checks if all acounts have positive balances after one block
+  # return true if all account balances are zero or greater
+  # returns false otherwise
+  
+  # Valid transactions should return true
+  def test_valid_transactions
+	  @checker.do_transactions('000000>111111(10):SYSTEM>000000(10)', 0)
+	  assert @checker.check_addresses(0)
+  end
+
+  # Invalid transactions should return false. Address 000000 has a negative balance.
+  def test_invalid_transactions
+	  @checker.do_transactions('000000>111111(10)', 0)
+	  refute @checker.check_addresses(0)
   end
 end

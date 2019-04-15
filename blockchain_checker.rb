@@ -17,20 +17,38 @@ class BlockchainChecker
   def main
     line_num = 0
     @file.each do |line|
-      # puts "#{line}"
-      blk_num, old_hash, trans, time, block_hash = line.split('|')
-      block_arr = (line[0...line.rindex('|')]).unpack('U*')
-      new_hash = calculate_hash(block_arr)
-      do_transactions(trans)
-      return unless check_block(blk_num, old_hash, trans, time, new_hash, block_hash.chomp, line_num)
+      blk_num, old_hash, trans, time, block_hash, block_arr = parse_block(line, line_num)
+      return false unless blk_num
 
-      @previous_block_num = blk_num
-      @previous_hash = new_hash
-      @previous_time = time
+      new_hash = calculate_hash(block_arr)
+      return false unless do_transactions(trans, line_num)
+
+      return false unless check_block(blk_num, old_hash, trans, time, new_hash, block_hash.chomp, line_num)
+
+      update_previous_values(blk_num, new_hash, time)
       line_num += 1
     end
     @file.close
     print_addresses
+  end
+
+  def parse_block(line, line_num)
+    begin
+      temp_arr = line.split('|')
+      raise StandardError if temp_arr.size != 5
+
+      block_arr = (line[0...line.rindex('|')]).unpack('U*')
+    rescue StandardError
+      puts "Line #{line_num}: Could not parse line '#{line}'"
+      return false
+    end
+    temp_arr << block_arr
+  end
+
+  def update_previous_values(blk_num, new_hash, time)
+    @previous_block_num = blk_num
+    @previous_hash = new_hash
+    @previous_time = time
   end
 
   def check_block(blk_num, old_hash, _trans, time, new_hash, block_hash, line)
@@ -50,13 +68,19 @@ class BlockchainChecker
       error_cases(line, 4, time, @previous_time)
       return false
     end
-    return check_addresses(line)
+    check_addresses(line)
   end
 
   def check_time(time)
-    seconds, nano = time.split('.')
-    old_seconds, old_nano = @previous_time.split('.')
+    begin
+      seconds, nano = time.split('.')
+      old_seconds, old_nano = @previous_time.split('.')
+    rescue StandardError
+      return false
+    end
     return true if seconds.to_i > old_seconds.to_i
+
+    return false if seconds.to_i < old_seconds.to_i
 
     nano.to_i > old_nano.to_i
   end
@@ -71,15 +95,25 @@ class BlockchainChecker
     true
   end
 
-  def do_transactions(trans)
-    trans_table = trans.split(':')
-    trans_table.each do |transaction|
-      sender, reciever = transaction.split('>')
-      amt = reciever[(reciever.rindex('(') + 1)...reciever.rindex(')')].to_i
-      reciever = reciever[0...reciever.rindex('(')]
-      @addr_table[sender] = @addr_table[sender] - amt if sender != 'SYSTEM'
-      @addr_table[reciever] = @addr_table[reciever] + amt
+  def do_transactions(trans, line)
+    begin
+      trans_table = trans.split(':')
+      trans_table.each do |transaction|
+        sender, reciever = transaction.split('>')
+        amt = reciever[(reciever.rindex('(') + 1)...reciever.rindex(')')].to_i
+        reciever = reciever[0...reciever.rindex('(')]
+        if sender.length != 6 || reciever.length != 6
+          error_cases(line, 6, sender, reciever)
+          return false
+        end
+        @addr_table[sender] = @addr_table[sender] - amt if sender != 'SYSTEM'
+        @addr_table[reciever] = @addr_table[reciever] + amt
+      end
+    rescue StandardError
+      puts "Line #{line}: Could not parse transaction list '#{trans}'"
+      return false
     end
+    true
   end
 
   def calculate_hash(block)
@@ -96,7 +130,7 @@ class BlockchainChecker
 
   def print_addresses
     @addr_table.sort.map do |key, value|
-      puts "#{key}: #{value} billcoins" unless value.negative?
+	    puts "#{key}: #{value} billcoins" if value.positive?
     end
   end
 
@@ -114,6 +148,8 @@ class BlockchainChecker
       puts "Line #{line}: New timestamp #{value} <= previous #{expected}"
     when 5
       puts "Line #{line}: Address #{expected} has invalid balance of #{value}"
+    when 6
+      puts "Line #{line}: Address " + (value.length != 6 ? value.to_s : expected.to_s) + ' is not six digits'
     end
     puts 'BLOCKCHAIN INVALID'
     @file&.close

@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-04-12T18:04:39-04:00">2019-04-12T18:04:39-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-04-14T20:37:54-04:00">2019-04-14T20:37:54-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">57.94%</span></span>
+    (<span class="covered_percent"><span class="red">71.52%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         42.24
+         74.28
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>2</b> files in total.
-    <b>107</b> relevant lines. 
-    <span class="green"><b>62</b> lines covered</span> and
-    <span class="red"><b>45</b> lines missed </span>
+    <b>151</b> relevant lines. 
+    <span class="green"><b>108</b> lines covered</span> and
+    <span class="red"><b>43</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -52,22 +52,22 @@
       
       <tr>
         <td class="strong"><a href="#91805376533c484dc5f6153784f2d78da243d18f" class="src_link" title="blockchain_checker.rb">blockchain_checker.rb</a></td>
-        <td class="red strong">40.79 %</td>
-        <td>121</td>
-        <td>76</td>
-        <td>31</td>
-        <td>45</td>
-        <td>32.8</td>
+        <td class="red strong">53.76 %</td>
+        <td>158</td>
+        <td>93</td>
+        <td>50</td>
+        <td>43</td>
+        <td>37.6</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#b9f63caef825c3540d264b907badc4e2dd776aa5" class="src_link" title="blockchain_checker_test.rb">blockchain_checker_test.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>84</td>
-        <td>31</td>
-        <td>31</td>
+        <td>144</td>
+        <td>58</td>
+        <td>58</td>
         <td>0</td>
-        <td>65.4</td>
+        <td>133.1</td>
       </tr>
       
     </tbody>
@@ -89,11 +89,11 @@
         <div class="source_table" id="91805376533c484dc5f6153784f2d78da243d18f">
   <div class="header">
     <h3>blockchain_checker.rb</h3>
-    <h4><span class="red">40.79 %</span> covered</h4>
+    <h4><span class="red">53.76 %</span> covered</h4>
     <div>
-      <b>76</b> relevant lines. 
-      <span class="green"><b>31</b> lines covered</span> and
-      <span class="red"><b>45</b> lines missed.</span>
+      <b>93</b> relevant lines. 
+      <span class="green"><b>50</b> lines covered</span> and
+      <span class="red"><b>43</b> lines missed.</span>
     </div>
   </div>
   
@@ -154,32 +154,32 @@
           <code class="ruby">  def initialize(file_name)</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="10">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="10">
+          <span class="hits">15</span>
           
           <code class="ruby">    @file = File.open(file_name)</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="11">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="11">
+          <span class="hits">15</span>
           
           <code class="ruby">    @previous_block_num = &#39;-1&#39;</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="12">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="12">
+          <span class="hits">15</span>
           
           <code class="ruby">    @previous_hash = &#39;0&#39;</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="13">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="13">
+          <span class="hits">15</span>
           
           <code class="ruby">    @previous_time = &#39;-1.-1&#39;</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="14">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="14">
+          <span class="hits">15</span>
           
           <code class="ruby">    @addr_table = Hash.new(0)</code>
         </li>
@@ -214,613 +214,835 @@
           <code class="ruby">    @file.each do |line|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="20">
+        <li class="missed" data-hits="0" data-linenumber="20">
           
           
-          <code class="ruby">      # puts &quot;#{line}&quot;</code>
+          <code class="ruby">      blk_num, old_hash, trans, time, block_hash, block_arr = parse_block(line, line_num)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="21">
+        <li class="never" data-hits="" data-linenumber="21">
           
           
-          <code class="ruby">      blk_num, old_hash, trans, time, block_hash = line.split(&#39;|&#39;)</code>
+          <code class="ruby">      #puts block_arr</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="22">
           
           
-          <code class="ruby">      block_arr = (line[0...line.rindex(&#39;|&#39;)]).unpack(&#39;U*&#39;)</code>
+          <code class="ruby">      new_hash = calculate_hash(block_arr)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="23">
           
           
-          <code class="ruby">      new_hash = calculate_hash(block_arr)</code>
+          <code class="ruby">      return false unless do_transactions(trans, line_num)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="24">
+        <li class="never" data-hits="" data-linenumber="24">
           
           
-          <code class="ruby">      do_transactions(trans)</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="25">
           
           
-          <code class="ruby">      return unless check_block(blk_num, old_hash, trans, time, new_hash, block_hash.chomp, line_num)</code>
+          <code class="ruby">      return false unless check_block(blk_num, old_hash, trans, time, new_hash, block_hash.chomp, line_num)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="26">
+        <li class="missed" data-hits="0" data-linenumber="26">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      update_previous_values(blk_num, new_hash, time)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="27">
           
           
-          <code class="ruby">      @previous_block_num = blk_num</code>
+          <code class="ruby">      line_num += 1</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="28">
+        <li class="never" data-hits="" data-linenumber="28">
           
           
-          <code class="ruby">      @previous_hash = new_hash</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="29">
           
           
-          <code class="ruby">      @previous_time = time</code>
+          <code class="ruby">    @file.close</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="30">
           
           
-          <code class="ruby">      line_num += 1</code>
+          <code class="ruby">    print_addresses</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="31">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="32">
+        <li class="never" data-hits="" data-linenumber="32">
           
           
-          <code class="ruby">    @file.close</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="33">
+        <li class="covered" data-hits="1" data-linenumber="33">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    print_addresses</code>
+          <code class="ruby">  def parse_block(line, line_num)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="34">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    begin</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="missed" data-hits="0" data-linenumber="35">
+          
+          
+          <code class="ruby">      temp_arr = line.split(&#39;|&#39;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="36">
+          
+          
+          <code class="ruby">      raise StandardError if temp_arr.size != 5</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="36">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def check_block(blk_num, old_hash, _trans, time, new_hash, block_hash, line)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="37">
-          
-          
-          <code class="ruby">    unless blk_num.to_i == (@previous_block_num.to_i + 1)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="38">
           
           
-          <code class="ruby">      error_cases(line, 1, blk_num, @previous_block_num.to_i + 1)</code>
+          <code class="ruby">      block_arr = (line[0...line.rindex(&#39;|&#39;)]).unpack(&#39;U*&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="39">
+        <li class="never" data-hits="" data-linenumber="39">
           
           
-          <code class="ruby">      return false</code>
+          <code class="ruby">    rescue StandardError</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="40">
+        <li class="missed" data-hits="0" data-linenumber="40">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      puts &quot;Line #{line_num}: Could not parse line &#39;#{line}&#39;&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="41">
           
           
-          <code class="ruby">    if old_hash != @previous_hash</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="42">
-          
-          
-          <code class="ruby">      error_cases(line, 2, old_hash, @previous_hash)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="43">
-          
-          
           <code class="ruby">      return false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="42">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
+          <code class="ruby">    #puts temp_arr</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="44">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">    #puts block_arr</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="45">
+        <li class="never" data-hits="" data-linenumber="45">
           
           
-          <code class="ruby">    if new_hash != block_hash</code>
+          <code class="ruby">    #puts</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="46">
           
           
-          <code class="ruby">      error_cases(line, 3, block_hash, new_hash)</code>
+          <code class="ruby">    temp_arr &lt;&lt; block_arr</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="47">
+        <li class="never" data-hits="" data-linenumber="47">
           
           
-          <code class="ruby">      return false</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="48">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="49">
+        <li class="covered" data-hits="1" data-linenumber="49">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    unless check_time(time)</code>
+          <code class="ruby">  def update_previous_values(blk_num, new_hash, time)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="50">
           
           
-          <code class="ruby">      error_cases(line, 4, time, @previous_time)</code>
+          <code class="ruby">      @previous_block_num = blk_num</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="51">
           
           
-          <code class="ruby">      return false</code>
+          <code class="ruby">      @previous_hash = new_hash</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="52">
+        <li class="missed" data-hits="0" data-linenumber="52">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      @previous_time = time</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="53">
+        <li class="never" data-hits="" data-linenumber="53">
           
           
-          <code class="ruby">    return check_addresses(line)</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="54">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">  </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="55">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="56">
+        <li class="covered" data-hits="1" data-linenumber="55">
           <span class="hits">1</span>
           
-          <code class="ruby">  def check_time(time)</code>
+          <code class="ruby">  def check_block(blk_num, old_hash, _trans, time, new_hash, block_hash, line)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="56">
+          
+          
+          <code class="ruby">    unless blk_num.to_i == (@previous_block_num.to_i + 1)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="57">
           
           
-          <code class="ruby">    seconds, nano = time.split(&#39;.&#39;)</code>
+          <code class="ruby">      error_cases(line, 1, blk_num, @previous_block_num.to_i + 1)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="58">
           
           
-          <code class="ruby">    old_seconds, old_nano = @previous_time.split(&#39;.&#39;)</code>
+          <code class="ruby">      return false</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="59">
+        <li class="never" data-hits="" data-linenumber="59">
           
           
-          <code class="ruby">    return true if seconds.to_i &gt; old_seconds.to_i</code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="missed" data-hits="0" data-linenumber="60">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    if old_hash != @previous_hash</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="61">
           
           
-          <code class="ruby">    nano.to_i &gt; old_nano.to_i</code>
+          <code class="ruby">      error_cases(line, 2, old_hash, @previous_hash)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="missed" data-hits="0" data-linenumber="62">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      return false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="63">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="64">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="64">
           
-          <code class="ruby">  def check_addresses(line)</code>
+          
+          <code class="ruby">    if new_hash != block_hash</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="65">
           
           
-          <code class="ruby">    @addr_table.each do |key, value|</code>
+          <code class="ruby">      error_cases(line, 3, block_hash, new_hash)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="66">
           
           
-          <code class="ruby">      if value.negative?</code>
+          <code class="ruby">      return false</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="67">
+        <li class="never" data-hits="" data-linenumber="67">
           
           
-          <code class="ruby">        error_cases(line, 5, value, key)</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="68">
           
           
-          <code class="ruby">        return false</code>
+          <code class="ruby">    unless check_time(time)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="missed" data-hits="0" data-linenumber="69">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">      error_cases(line, 4, time, @previous_time)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="70">
+        <li class="missed" data-hits="0" data-linenumber="70">
+          
+          
+          <code class="ruby">      return false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="71">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="71">
+        <li class="missed" data-hits="0" data-linenumber="72">
           
           
-          <code class="ruby">    true</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="72">
-          
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">    check_addresses(line)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="73">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="74">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="74">
+        <li class="covered" data-hits="1" data-linenumber="75">
           <span class="hits">1</span>
           
-          <code class="ruby">  def do_transactions(trans)</code>
+          <code class="ruby">  def check_time(time)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="75">
+        <li class="never" data-hits="" data-linenumber="76">
           
           
-          <code class="ruby">    trans_table = trans.split(&#39;:&#39;)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="76">
-          
-          
-          <code class="ruby">    trans_table.each do |transaction|</code>
+          <code class="ruby">    begin</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="77">
           
           
-          <code class="ruby">      sender, reciever = transaction.split(&#39;&gt;&#39;)</code>
+          <code class="ruby">      seconds, nano = time.split(&#39;.&#39;)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="78">
           
           
-          <code class="ruby">      amt = reciever[(reciever.rindex(&#39;(&#39;) + 1)...reciever.rindex(&#39;)&#39;)].to_i</code>
+          <code class="ruby">      old_seconds, old_nano = @previous_time.split(&#39;.&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="79">
+        <li class="never" data-hits="" data-linenumber="79">
           
           
-          <code class="ruby">      reciever = reciever[0...reciever.rindex(&#39;(&#39;)]</code>
+          <code class="ruby">    rescue StandardError</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="80">
           
           
-          <code class="ruby">      @addr_table[sender] = @addr_table[sender] - amt if sender != &#39;SYSTEM&#39;</code>
+          <code class="ruby">      return false</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="81">
-          
-          
-          <code class="ruby">      @addr_table[reciever] = @addr_table[reciever] + amt</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="82">
+        <li class="never" data-hits="" data-linenumber="81">
           
           
           <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="82">
+          
+          
+          <code class="ruby">    return true if seconds.to_i &gt; old_seconds.to_i</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="83">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="84">
+        <li class="missed" data-hits="0" data-linenumber="84">
+          
+          
+          <code class="ruby">    return false if seconds.to_i &lt; old_seconds.to_i</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="85">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="85">
+        <li class="missed" data-hits="0" data-linenumber="86">
+          
+          
+          <code class="ruby">    nano.to_i &gt; old_nano.to_i</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="87">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="88">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="89">
           <span class="hits">1</span>
           
-          <code class="ruby">  def calculate_hash(block)</code>
+          <code class="ruby">  def check_addresses(line)</code>
         </li>
       
-        <li class="covered" data-hits="102" data-linenumber="86">
-          <span class="hits">102</span>
+        <li class="covered" data-hits="2" data-linenumber="90">
+          <span class="hits">2</span>
           
-          <code class="ruby">    sum = 0</code>
+          <code class="ruby">    @addr_table.each do |key, value|</code>
         </li>
       
-        <li class="covered" data-hits="102" data-linenumber="87">
-          <span class="hits">102</span>
+        <li class="covered" data-hits="3" data-linenumber="91">
+          <span class="hits">3</span>
           
-          <code class="ruby">    block.each do |char|</code>
+          <code class="ruby">      if value.negative?</code>
         </li>
       
-        <li class="covered" data-hits="1005" data-linenumber="88">
-          <span class="hits">1005</span>
+        <li class="covered" data-hits="1" data-linenumber="92">
+          <span class="hits">1</span>
           
-          <code class="ruby">      sum = (sum + hash(char)) % 65_536</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="89">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="covered" data-hits="102" data-linenumber="90">
-          <span class="hits">102</span>
-          
-          <code class="ruby">    sum.to_s(16)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="91">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="92">
-          
-          
-          <code class="ruby"></code>
+          <code class="ruby">        error_cases(line, 5, value, key)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="93">
           <span class="hits">1</span>
           
-          <code class="ruby">  def hash(x)</code>
+          <code class="ruby">        return false</code>
         </li>
       
-        <li class="covered" data-hits="1105" data-linenumber="94">
-          <span class="hits">1105</span>
+        <li class="never" data-hits="" data-linenumber="94">
           
-          <code class="ruby">    ((x**3000) + (x**x) - (3**x)) * (7**x)</code>
+          
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="95">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="96">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="97">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="96">
+        <li class="never" data-hits="" data-linenumber="98">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="97">
+        <li class="covered" data-hits="1" data-linenumber="99">
           <span class="hits">1</span>
           
-          <code class="ruby">  def print_addresses</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="98">
-          
-          
-          <code class="ruby">    @addr_table.sort.map do |key, value|</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="99">
-          
-          
-          <code class="ruby">      puts &quot;#{key}: #{value} billcoins&quot; unless value.negative?</code>
+          <code class="ruby">  def do_transactions(trans, line)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="100">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">    begin</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="101">
+        <li class="covered" data-hits="104" data-linenumber="101">
+          <span class="hits">104</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      trans_table = trans.split(&#39;:&#39;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="102">
+        <li class="covered" data-hits="104" data-linenumber="102">
+          <span class="hits">104</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">      trans_table.each do |transaction|</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="103">
+        <li class="covered" data-hits="106" data-linenumber="103">
+          <span class="hits">106</span>
+          
+          <code class="ruby">        sender, reciever = transaction.split(&#39;&gt;&#39;)</code>
+        </li>
+      
+        <li class="covered" data-hits="106" data-linenumber="104">
+          <span class="hits">106</span>
+          
+          <code class="ruby">        amt = reciever[(reciever.rindex(&#39;(&#39;) + 1)...reciever.rindex(&#39;)&#39;)].to_i</code>
+        </li>
+      
+        <li class="covered" data-hits="106" data-linenumber="105">
+          <span class="hits">106</span>
+          
+          <code class="ruby">        reciever = reciever[0...reciever.rindex(&#39;(&#39;)]</code>
+        </li>
+      
+        <li class="covered" data-hits="106" data-linenumber="106">
+          <span class="hits">106</span>
+          
+          <code class="ruby">        if sender.length != 6 || reciever.length != 6</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="107">
           <span class="hits">1</span>
           
-          <code class="ruby">  def error_cases(line, error_num, value, expected)</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="104">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    case error_num</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="105">
-          
-          
-          <code class="ruby">    when 0</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="106">
-          
-          
-          <code class="ruby">      puts &quot;Usage: ruby verifier.rb &lt;name_of_file&gt;\nname_of_file = name of file to verify&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="107">
-          
-          
-          <code class="ruby">    when 1</code>
+          <code class="ruby">          error_cases(line, 6, sender, reciever)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="108">
           <span class="hits">1</span>
           
-          <code class="ruby">      puts &quot;Line #{line}: Invalid block number #{value}, should be #{expected}&quot;</code>
+          <code class="ruby">          return false</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="109">
           
           
-          <code class="ruby">    when 2</code>
+          <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="110">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="105" data-linenumber="110">
+          <span class="hits">105</span>
           
-          <code class="ruby">      puts &quot;Line #{line}: Previous hash was #{value}, should be #{expected}&quot;</code>
+          <code class="ruby">        @addr_table[sender] = @addr_table[sender] - amt if sender != &#39;SYSTEM&#39;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="111">
+        <li class="covered" data-hits="105" data-linenumber="111">
+          <span class="hits">105</span>
           
-          
-          <code class="ruby">    when 3</code>
+          <code class="ruby">        @addr_table[reciever] = @addr_table[reciever] + amt</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="112">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="112">
           
-          <code class="ruby">      puts &quot;Line #{line}: Current hash is #{value}, should be #{expected}&quot;</code>
+          
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="113">
           
           
-          <code class="ruby">    when 4</code>
+          <code class="ruby">    rescue StandardError</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="114">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="114">
           
-          <code class="ruby">      puts &quot;Line #{line}: New timestamp #{value} &lt;= previous #{expected}&quot;</code>
+          
+          <code class="ruby">      puts &quot;Line #{line}: Could not parse transaction list &#39;#{trans}&#39;&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="115">
+        <li class="missed" data-hits="0" data-linenumber="115">
           
           
-          <code class="ruby">    when 5</code>
+          <code class="ruby">      return false</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="116">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      puts &quot;Line #{line}: Address #{expected} has invalid balance of #{value}&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="117">
+        <li class="never" data-hits="" data-linenumber="116">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="118">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="103" data-linenumber="117">
+          <span class="hits">103</span>
           
-          <code class="ruby">    puts &#39;BLOCKCHAIN INVALID&#39;</code>
+          <code class="ruby">    true</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="119">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    @file&amp;.close</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="120">
+        <li class="never" data-hits="" data-linenumber="118">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="121">
+        <li class="never" data-hits="" data-linenumber="119">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="120">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def calculate_hash(block)</code>
+        </li>
+      
+        <li class="covered" data-hits="102" data-linenumber="121">
+          <span class="hits">102</span>
+          
+          <code class="ruby">    sum = 0</code>
+        </li>
+      
+        <li class="covered" data-hits="102" data-linenumber="122">
+          <span class="hits">102</span>
+          
+          <code class="ruby">    block.each do |char|</code>
+        </li>
+      
+        <li class="covered" data-hits="1005" data-linenumber="123">
+          <span class="hits">1005</span>
+          
+          <code class="ruby">      sum = (sum + hash(char)) % 65_536</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="124">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="102" data-linenumber="125">
+          <span class="hits">102</span>
+          
+          <code class="ruby">    sum.to_s(16)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="126">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="127">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="128">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def hash(x)</code>
+        </li>
+      
+        <li class="covered" data-hits="1105" data-linenumber="129">
+          <span class="hits">1105</span>
+          
+          <code class="ruby">    ((x**3000) + (x**x) - (3**x)) * (7**x)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="130">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="131">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="132">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def print_addresses</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="133">
+          
+          
+          <code class="ruby">    @addr_table.sort.map do |key, value|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="134">
+          
+          
+          <code class="ruby">      puts &quot;#{key}: #{value} billcoins&quot; if value &gt; 0</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="135">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="136">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="137">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="138">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def error_cases(line, error_num, value, expected)</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="139">
+          <span class="hits">8</span>
+          
+          <code class="ruby">    case error_num</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="140">
+          
+          
+          <code class="ruby">    when 0</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="141">
+          
+          
+          <code class="ruby">      puts &quot;Usage: ruby verifier.rb &lt;name_of_file&gt;\nname_of_file = name of file to verify&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="142">
+          
+          
+          <code class="ruby">    when 1</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="143">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      puts &quot;Line #{line}: Invalid block number #{value}, should be #{expected}&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="144">
+          
+          
+          <code class="ruby">    when 2</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="145">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      puts &quot;Line #{line}: Previous hash was #{value}, should be #{expected}&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="146">
+          
+          
+          <code class="ruby">    when 3</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="147">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      puts &quot;Line #{line}: Current hash is #{value}, should be #{expected}&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="148">
+          
+          
+          <code class="ruby">    when 4</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="149">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      puts &quot;Line #{line}: New timestamp #{value} &lt;= previous #{expected}&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="150">
+          
+          
+          <code class="ruby">    when 5</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="151">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      puts &quot;Line #{line}: Address #{expected} has invalid balance of #{value}&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="152">
+          
+          
+          <code class="ruby">    when 6</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="153">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      puts &quot;Line #{line}: Address &quot; + (value.length != 6 ? value.to_s : expected.to_s) + &#39; is not six digits&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="154">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="155">
+          <span class="hits">8</span>
+          
+          <code class="ruby">    puts &#39;BLOCKCHAIN INVALID&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="156">
+          <span class="hits">8</span>
+          
+          <code class="ruby">    @file&amp;.close</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="157">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="158">
           
           
           <code class="ruby">end</code>
@@ -836,8 +1058,8 @@
     <h3>blockchain_checker_test.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>31</b> relevant lines. 
-      <span class="green"><b>31</b> lines covered</span> and
+      <b>58</b> relevant lines. 
+      <span class="green"><b>58</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -893,8 +1115,8 @@
           <code class="ruby">  def setup</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="9">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="15" data-linenumber="9">
+          <span class="hits">15</span>
           
           <code class="ruby">    @checker = BlockchainChecker.new(&#39;./valid_test_chains/sample.txt&#39;)</code>
         </li>
@@ -944,7 +1166,7 @@
         <li class="covered" data-hits="1" data-linenumber="17">
           <span class="hits">1</span>
           
-          <code class="ruby">    property_of do</code>
+          <code class="ruby">    property_of{</code>
         </li>
       
         <li class="covered" data-hits="100" data-linenumber="18">
@@ -956,7 +1178,7 @@
         <li class="never" data-hits="" data-linenumber="19">
           
           
-          <code class="ruby">    end.check do |value|</code>
+          <code class="ruby">    }.check{ |value|</code>
         </li>
       
         <li class="covered" data-hits="100" data-linenumber="20">
@@ -974,7 +1196,7 @@
         <li class="never" data-hits="" data-linenumber="22">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">    }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
@@ -1094,7 +1316,7 @@
         <li class="covered" data-hits="1" data-linenumber="42">
           <span class="hits">1</span>
           
-          <code class="ruby">    property_of do</code>
+          <code class="ruby">    property_of{</code>
         </li>
       
         <li class="covered" data-hits="1100" data-linenumber="43">
@@ -1106,7 +1328,7 @@
         <li class="never" data-hits="" data-linenumber="44">
           
           
-          <code class="ruby">    end.check do |arr|</code>
+          <code class="ruby">    }.check{ |arr|</code>
         </li>
       
         <li class="covered" data-hits="100" data-linenumber="45">
@@ -1121,8 +1343,8 @@
           <code class="ruby">      value.split(//).each do |char|</code>
         </li>
       
-        <li class="covered" data-hits="390" data-linenumber="47">
-          <span class="hits">390</span>
+        <li class="covered" data-hits="392" data-linenumber="47">
+          <span class="hits">392</span>
           
           <code class="ruby">        assert_includes([&#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;,&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;], char)</code>
         </li>
@@ -1136,7 +1358,7 @@
         <li class="never" data-hits="" data-linenumber="49">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">    }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="50">
@@ -1196,154 +1418,514 @@
         <li class="never" data-hits="" data-linenumber="59">
           
           
-          <code class="ruby">  #</code>
+          <code class="ruby">  # err_num = 6 -&gt; address is not 6 digits long</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="60">
           
           
+          <code class="ruby">  #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="61">
+          
+          
           <code class="ruby">  # Test for output of error case of bad block number</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="61">
+        <li class="covered" data-hits="1" data-linenumber="62">
           <span class="hits">1</span>
           
           <code class="ruby">  def test_err_num_one</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="62">
+        <li class="covered" data-hits="2" data-linenumber="63">
           <span class="hits">2</span>
           
           <code class="ruby">	  assert_output(&quot;Line 0: Invalid block number 1, should be 0\nBLOCKCHAIN INVALID\n&quot;) { @checker.error_cases(0, 1, 1, 0)}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="63">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="64">
           
           
-          <code class="ruby"> </code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="65">
           
           
+          <code class="ruby"> </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="66">
+          
+          
           <code class="ruby">  # Test for output of error case of bad previous hash</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="66">
+        <li class="covered" data-hits="1" data-linenumber="67">
           <span class="hits">1</span>
           
           <code class="ruby">  def test_err_num_two</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="67">
+        <li class="covered" data-hits="2" data-linenumber="68">
           <span class="hits">2</span>
           
           <code class="ruby">	  assert_output(&quot;Line 0: Previous hash was 333f, should be 288d\nBLOCKCHAIN INVALID\n&quot;) { @checker.error_cases(0, 2, &#39;333f&#39;, &#39;288d&#39;)}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="68">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="69">
           
           
-          <code class="ruby">  </code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="70">
           
           
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="71">
+          
+          
           <code class="ruby">  # Test for output of error case of bad hash of current block</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="71">
+        <li class="covered" data-hits="1" data-linenumber="72">
           <span class="hits">1</span>
           
           <code class="ruby">  def test_err_num_three</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="72">
+        <li class="covered" data-hits="2" data-linenumber="73">
           <span class="hits">2</span>
           
           <code class="ruby">	  assert_output(&quot;Line 0: Current hash is 333f, should be 288d\nBLOCKCHAIN INVALID\n&quot;) { @checker.error_cases(0, 3, &#39;333f&#39;, &#39;288d&#39;)}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="73">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="74">
           
           
-          <code class="ruby">  </code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="75">
           
           
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="76">
+          
+          
           <code class="ruby">  # Test for output of error case of bad time stamp</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="76">
+        <li class="covered" data-hits="1" data-linenumber="77">
           <span class="hits">1</span>
           
           <code class="ruby">  def test_err_num_four</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="77">
+        <li class="covered" data-hits="2" data-linenumber="78">
           <span class="hits">2</span>
           
           <code class="ruby">	  assert_output(&quot;Line 0: New timestamp 12345.123 &lt;= previous 12345.126\nBLOCKCHAIN INVALID\n&quot;) { @checker.error_cases(0, 4, &#39;12345.123&#39;, &#39;12345.126&#39;)}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="78">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="79">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="80">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="81">
+          
+          
           <code class="ruby">  # Test for output of error case of bad transaction(s)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="81">
+        <li class="covered" data-hits="1" data-linenumber="82">
           <span class="hits">1</span>
           
           <code class="ruby">  def test_err_num_five</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="82">
+        <li class="covered" data-hits="2" data-linenumber="83">
           <span class="hits">2</span>
           
           <code class="ruby">	  assert_output(&quot;Line 0: Address 123456 has invalid balance of -1\nBLOCKCHAIN INVALID\n&quot;) { @checker.error_cases(0, 5, -1, 123456)}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="83">
+        <li class="never" data-hits="" data-linenumber="84">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="84">
+        <li class="never" data-hits="" data-linenumber="85">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="86">
+          
+          
+          <code class="ruby">  # Test for output of error case of address of the wrong length</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="87">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_err_num_six</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="88">
+          <span class="hits">2</span>
+          
+          <code class="ruby">	  assert_output(&quot;Line 0: Address 12345 is not six digits\nBLOCKCHAIN INVALID\n&quot;) { @checker.error_cases(0, 6, &#39;12345&#39;, &#39;123456&#39;)}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="89">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="90">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="91">
+          
+          
+          <code class="ruby">  # Tests for do_transactions(x)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="92">
+          
+          
+          <code class="ruby">  # evaluates all the transactions in a single block </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="93">
+          
+          
+          <code class="ruby">  # changes balances of each account invlovled in a transaction</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="94">
+          
+          
+          <code class="ruby">  #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="95">
+          
+          
+          <code class="ruby">  # Test if billcoins added from the system are not subtracted from any account</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="96">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_sending_from_system</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="97">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  property_of {</code>
+        </li>
+      
+        <li class="covered" data-hits="100" data-linenumber="98">
+          <span class="hits">100</span>
+          
+          <code class="ruby">		  address = range(lo = 0, hi = 999999)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="99">
+          
+          
+          <code class="ruby">	  }.check { |address|</code>
+        </li>
+      
+        <li class="covered" data-hits="100" data-linenumber="100">
+          <span class="hits">100</span>
+          
+          <code class="ruby">		address = address.to_s</code>
+        </li>
+      
+        <li class="covered" data-hits="100" data-linenumber="101">
+          <span class="hits">100</span>
+          
+          <code class="ruby">		while address.length &lt; 6</code>
+        </li>
+      
+        <li class="covered" data-hits="12" data-linenumber="102">
+          <span class="hits">12</span>
+          
+          <code class="ruby">		  address = &#39;0&#39; + address</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="103">
+          
+          
+          <code class="ruby">		end</code>
+        </li>
+      
+        <li class="covered" data-hits="100" data-linenumber="104">
+          <span class="hits">100</span>
+          
+          <code class="ruby">          	transaction = &quot;SYSTEM&gt;&quot; + address + &quot;(1)&quot;</code>
+        </li>
+      
+        <li class="covered" data-hits="100" data-linenumber="105">
+          <span class="hits">100</span>
+          
+          <code class="ruby">		@checker.do_transactions(transaction, 0)</code>
+        </li>
+      
+        <li class="covered" data-hits="100" data-linenumber="106">
+          <span class="hits">100</span>
+          
+          <code class="ruby">	        @checker.addr_table.each do |key, value|</code>
+        </li>
+      
+        <li class="covered" data-hits="5050" data-linenumber="107">
+          <span class="hits">5050</span>
+          
+          <code class="ruby">			refute value.negative?</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="108">
+          
+          
+          <code class="ruby">		end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="109">
+          
+          
+          <code class="ruby">	  }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="110">
+          
+          
+          <code class="ruby">  end	  </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="111">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="112">
+          
+          
+          <code class="ruby">  # Test if billcoins are properly added and subtracted</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="113">
+          
+          
+          <code class="ruby">  # from addresses involved in transactions</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="114">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_sending_and_recieving</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="115">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  @checker.do_transactions(&#39;000000&gt;111111(10):222222&gt;333333(5)&#39;, 0)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="116">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  assert @checker.addr_table[&#39;000000&#39;] == -10</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="117">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  assert @checker.addr_table[&#39;111111&#39;] == 10</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="118">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  assert @checker.addr_table[&#39;222222&#39;] == -5</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="119">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  assert @checker.addr_table[&#39;333333&#39;] == 5</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="120">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  assert @checker.addr_table.length == 4</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="121">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="122">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="123">
+          
+          
+          <code class="ruby">  # Test if returns false on incorrect address length</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="124">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_bad_address_length</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="125">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  refute @checker.do_transactions(&#39;00000&gt;111111(10)&#39;, 0)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="126">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="127">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="128">
+          
+          
+          <code class="ruby">  # Tests for check_addresses(x)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="129">
+          
+          
+          <code class="ruby">  # checks if all acounts have positive balances after one block</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="130">
+          
+          
+          <code class="ruby">  # return true if all account balances are zero or greater</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="131">
+          
+          
+          <code class="ruby">  # returns false otherwise</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="132">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="133">
+          
+          
+          <code class="ruby">  # Valid transactions should return true</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="134">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_valid_transactions</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="135">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  @checker.do_transactions(&#39;000000&gt;111111(10):SYSTEM&gt;000000(10)&#39;, 0)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="136">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  assert @checker.check_addresses(0)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="137">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="138">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="139">
+          
+          
+          <code class="ruby">  # Invalid transactions should return false. Address 000000 has a negative balance.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="140">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_invalid_transactions</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="141">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  @checker.do_transactions(&#39;000000&gt;111111(10)&#39;, 0)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="142">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	  refute @checker.check_addresses(0)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="143">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="144">
           
           
           <code class="ruby">end</code>
