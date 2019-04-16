@@ -120,6 +120,12 @@ class BlockchainCheckerTest < Minitest::Test
 	  assert @checker.addr_table.length == 4
   end
 
+  # Test if an incorrect transaction string is passed in it
+  # prints out an error statement
+  def test_invalid_transaction_format
+	  assert_output("Line 0: Could not parse transaction list 'Billy Bob'\n") {@checker.do_transactions('Billy Bob', 0)}
+  end
+
   # Test if returns false on incorrect address length
   def test_bad_address_length
 	  refute @checker.do_transactions('00000>111111(10)', 0)
@@ -140,5 +146,129 @@ class BlockchainCheckerTest < Minitest::Test
   def test_invalid_transactions
 	  @checker.do_transactions('000000>111111(10)', 0)
 	  refute @checker.check_addresses(0)
+  end
+
+  # Tests for print_addresses
+  # Prints out all adresses with 1 or more billcoins in increasing
+  # address value
+  # Tests if addresses with more than zero billcoins are printed in the correct order
+  def test_print_addresses_more_than_zero_billcoins
+	  @checker.do_transactions('SYSTEM>111111(100):SYSTEM>000000(50)', 0)
+	  assert_output("000000: 50 billcoins\n111111: 100 billcoins\n") {@checker.print_addresses}
+  end
+
+  # Tests if does not print out addresses with a balance of zero or less
+  def test_no_print_of_addresses_zero_or_less
+	  @checker.do_transactions('SYSTEM>111111(0):SYSTEM>000000(0)', 0)
+	  assert_output('') {@checker.print_addresses}
+  end
+	 
+  # Equivalence classes of check_time(x) 
+  # x is a string of the form (number of seconds).(number of nanoseconds)
+  # compares the parts of x to the time of the previous block(initialized to -1.-1)
+  # booleans are evaluated in this order
+  # number of seconds > previous seconds -> return true
+  # number of seconds < previous seconds -> return false
+  # number of nanoseconds > previous nanoseconds -> return true
+  # number of nanoseconds <= previous nanoseconds -> return false
+  # Returns false if time cannot be parsed correctly
+  # Tests if seconds is greater than previous seconds return true
+  def test_seconds_is_greater
+	  assert @checker.check_time('0.0')
+  end
+
+  # Tests if seconds is less than previous seconds return false
+  def test_seconds_is_less_than
+	  refute @checker.check_time('-2.0')
+  end
+
+  # Tests of nanoseconds is greater than previous nanoseconds return true
+  def test_nanosecons_greater
+	  assert @checker.check_time('-1.0')
+  end
+
+  # Tests if nanoseconds is less than previous nanoseconds return false
+  def test_nanoseconds_less_then
+	  refute @checker.check_time('-1.-2')
+  end
+
+  # Tests if nanoseconds is equal to previous nanoseconds return false
+  def test_nanoseconds_equal
+	  refute @checker.check_time('-1.-1')
+  end
+
+  # Tests if x cannot be parsed correctly return false
+  def test_cannot_parse_time
+	  refute @checker.check_time("-1-1")
+  end
+
+  # Tests for update_previous_values(x, y, z)
+  # Updates the instance variables the hold information on the previous block
+  def test_update_previous_values
+	  property_of{
+		  num = string
+		  hash = string
+		  time = string
+	  }.check { |num, hash, time|
+		  @checker.update_previous_values(num, hash, time)
+		  assert @checker.previous_block_num == num
+		  assert @checker.previous_hash == hash
+		  assert @checker.previous_time == time
+	  }
+  end
+
+  # Tests for main
+  # Checks if a billcoin blockchain is valid or not
+  # Prints out addresses with billcoins if blockchain is valid
+  # Prints out INVALID BLOCKCHAIN if it is not
+  def test_main_invalid_blockchain
+	  c = BlockchainChecker.new('./invalid_test_chains/bad_block_hash.txt')
+	  assert_output("Line 9: Current hash is abcd, should be 676e\nBLOCKCHAIN INVALID\n") {c.main}
+  end
+
+  # Prints out addresses with billcoins of valid blockchain
+  def test_main_valid_blockchain
+	  c = BlockchainChecker.new('./valid_test_chains/one_line.txt')
+	  assert_output("569274: 100 billcoins\n") {c.main}
+  end
+
+  # Tests for parse_block(line, line_num)
+  # parses a line representing a single block and returns values of the block as an array
+  # Throws error resulting in outputting could not parse line
+  # Tests if could not parse line is outputted on invalid formatted line
+  def test_incorrectly_formatted_line
+	  assert_output("Line 0: Could not parse line 'Not a line'\n") {@checker.parse_block('Not a line', 0)}
+  end
+
+  # Tests for check_block( num, hash1, trans, time, hash2, hash3, line)
+  # Checks if all these values are correct
+  # num != previous block num + 1 -> return false
+  # hash1 != previous hash -> return false
+  # hash2 != hash3 -> return false
+  # time isn't valid -> return false
+  # trans isn't valid -> return false
+  # Valid block parts return true
+  def test_check_block_is_good
+	  assert @checker.check_block('0', '0', 'SYSTEM>111111(40)', '0.0', '1', '1', 0)
+  end
+
+  # Block with bad block num retuns false
+  def test_check_block_bad_block_num
+	  refute @checker.check_block('1', '0', 'SYSTEM>111111(40)', '0.0', '1', '1', 0)
+  end
+
+  # Block with bad hash of previous block returns false
+  def test_check_block_bad_old_hash 
+	  refute @checker.check_block('0', 'a23', 'SYSTEM>111111(40)', '0.0', '1', '1', 0)
+  end
+
+  # Block with different hash from calculated one returns false
+  def test_check_block_bad_block_hash
+	  refute @checker.check_block('0', '0', 'SYSTEM>111111(40)', '0.0', 'a', '1', 0)
+  end
+
+  # Block with bad time returns false
+  def test_check_block_bad_time
+	  refute @checker.check_block('0', '0', 'SYSTEM>111111(40)', '-1.-1', '1', '1', 0)
   end
 end

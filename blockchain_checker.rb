@@ -82,6 +82,8 @@ class BlockchainChecker
 
     return false if seconds.to_i < old_seconds.to_i
 
+    return false if nano.nil?
+        
     nano.to_i > old_nano.to_i
   end
 
