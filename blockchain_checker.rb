@@ -12,6 +12,7 @@ class BlockchainChecker
     @previous_hash = '0'
     @previous_time = '-1.-1'
     @addr_table = Hash.new(0)
+    @dictionary = Hash.new
   end
 
   def main
@@ -120,14 +121,23 @@ class BlockchainChecker
 
   def calculate_hash(block)
     sum = 0
-    block.each do |char|
-      sum = (sum + hash(char)) % 65_536
+    until block.empty?
+      multiplier = block.count(block[0])
+      sum = sum + (multiplier*hash(block[0]))
+      block.delete(block[0])
     end
+    sum = sum % 65_536
     sum.to_s(16)
   end
 
   def hash(x)
-    ((x**3000) + (x**x) - (3**x)) * (7**x)
+    val = @dictionary.fetch(x, nil)
+    if val != nil
+      return val
+    else
+      @dictionary[x] = ((x**3000) + (x**x) - (3**x)) * (7**x)
+      return @dictionary[x]
+    end
   end
 
   def print_addresses
