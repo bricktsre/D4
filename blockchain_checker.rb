@@ -12,7 +12,7 @@ class BlockchainChecker
     @previous_hash = '0'
     @previous_time = '-1.-1'
     @addr_table = Hash.new(0)
-    @dictionary = Hash.new
+    @dictionary = {}
   end
 
   def main
@@ -84,7 +84,7 @@ class BlockchainChecker
     return false if seconds.to_i < old_seconds.to_i
 
     return false if nano.nil?
-        
+
     nano.to_i > old_nano.to_i
   end
 
@@ -123,7 +123,7 @@ class BlockchainChecker
     sum = 0
     until block.empty?
       multiplier = block.count(block[0])
-      sum = sum + (multiplier*hash(block[0]))
+      sum += (multiplier * hash(block[0]))
       block.delete(block[0])
     end
     sum = sum % 65_536
@@ -132,7 +132,7 @@ class BlockchainChecker
 
   def hash(x)
     val = @dictionary.fetch(x, nil)
-    if val != nil
+    if !val.nil?
       return val
     else
       @dictionary[x] = ((x**3000) + (x**x) - (3**x)) * (7**x)
@@ -142,7 +142,7 @@ class BlockchainChecker
 
   def print_addresses
     @addr_table.sort.map do |key, value|
-	    puts "#{key}: #{value} billcoins" if value.positive?
+      puts "#{key}: #{value} billcoins" if value.positive?
     end
   end
 

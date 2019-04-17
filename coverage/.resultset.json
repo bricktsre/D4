@@ -1,7 +1,7 @@
 {
   "MiniTest": {
     "coverage": {
-      "/Users/danielcowan/Desktop/git_clones/D4/blockchain_checker_test.rb": [
+      "/home/greg/Documents/1632/projects/D4/blockchain_checker_test.rb": [
         null,
         null,
         1,
@@ -48,11 +48,7 @@
         null,
         100,
         100,
-<<<<<<< Updated upstream
-        395,
-=======
-        394,
->>>>>>> Stashed changes
+        392,
         null,
         null,
         null,
@@ -107,7 +103,7 @@
         null,
         100,
         100,
-        10,
+        12,
         null,
         100,
         100,
@@ -155,12 +151,6 @@
         1,
         1,
         null,
-<<<<<<< Updated upstream
-=======
-        null
-      ],
-      "/Users/danielcowan/Desktop/git_clones/D4/blockchain_checker.rb": [
->>>>>>> Stashed changes
         null,
         null,
         null,
@@ -173,7 +163,6 @@
         null,
         null,
         1,
-<<<<<<< Updated upstream
         1,
         2,
         null,
@@ -190,30 +179,13 @@
         null,
         1,
         1,
-=======
-        15,
-        15,
-        15,
-        15,
-        15,
-        15,
+        null,
         null,
         null,
         1,
-        0,
-        0,
-        0,
-        0,
->>>>>>> Stashed changes
+        1,
         null,
         null,
-<<<<<<< Updated upstream
-=======
-        0,
-        null,
-        0,
-        0,
->>>>>>> Stashed changes
         null,
         1,
         1,
@@ -228,15 +200,6 @@
         1,
         1,
         null,
-<<<<<<< Updated upstream
-        null,
-        null,
-        1,
-        1,
-        null,
-=======
-        0,
->>>>>>> Stashed changes
         null,
         null,
         1,
@@ -318,38 +281,18 @@
         null,
         null,
         1,
-<<<<<<< Updated upstream
         null,
-=======
-        102,
-        102,
-        985,
-        985,
-        985,
-        null,
-        102,
-        102,
->>>>>>> Stashed changes
         null,
         1,
         1,
         null,
         1,
-<<<<<<< Updated upstream
         35,
         35,
         35,
         35,
         35,
-=======
-        1085,
-        1085,
-        728,
-        null,
-        357,
-        357,
-        null,
->>>>>>> Stashed changes
+        35,
         null,
         null,
         1,
@@ -459,13 +402,22 @@
         1,
         113,
         113,
-        1952,
+        1220,
+        1220,
+        1220,
         null,
+        113,
         113,
         null,
         null,
         1,
-        2052,
+        1320,
+        1320,
+        920,
+        null,
+        400,
+        400,
+        null,
         null,
         null,
         1,
@@ -497,10 +449,6 @@
         null
       ]
     },
-<<<<<<< Updated upstream
-    "timestamp": 1555389453
-=======
-    "timestamp": 1555458748
->>>>>>> Stashed changes
+    "timestamp": 1555463153
   }
 }
