@@ -1,13 +1,4 @@
-# D4
+# D4 for Quality Assurance Class
 
-TODO:
+Program verifies a simple blockchain. Performance testing was used to optimize the speed of the program. Unoptimmized code was tagged with Initial for comparison.
 
-Making it right
-1. Putting in more error cases like: invalid file, additional characters, wrong addresses, other stuff
-2. Making it so minitest and command line can both run the program at the same time
-
-Making it fast
-1. Putting all possible hashes in a file for quick access
-2. Checking balances of addresses
-
-Unit tests
